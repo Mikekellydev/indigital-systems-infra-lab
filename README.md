@@ -1,4 +1,5 @@
-# 🛰️ INDIGITAL Systems Infrastructure Engineer Lab
+✨ Improved README.md
+md
 
 <p align="center">
   <img src="https://img.shields.io/badge/Ansible-Automation-blue">
@@ -9,24 +10,24 @@
   <img src="https://img.shields.io/badge/Security-Hardening-green">
 </p>
 
+<h1 align="center">🛰️ INDIGITAL Systems Infrastructure Engineer Lab</h1>
+
+<p align="center">
+A complete, production‑style Systems Infrastructure Engineering lab demonstrating automation, IaC, monitoring, security, and operational documentation.
+</p>
+
 ---
 
 ## 📘 Table of Contents
-- [Quickstart](#-quickstart)
-- [Repository Structure](#-repository-structure)
-- [Ansible Automation](#-ansible-automation)
-- [Proxmox IaC](#-proxmox-iac)
-- [Monitoring](#-monitoring)
-- [Security](#-security)
-- [Documentation](#-documentation)
-- [Purpose](#-purpose)
-
----
-
-This repository demonstrates the daily responsibilities, tooling, and operational workflows of a Systems Infrastructure Engineer.  
-It includes automation, virtualization, monitoring, security hardening, and documentation that mirrors real-world engineering practices.
-
-The goal of this lab is to showcase technical depth, operational maturity, and an automation-first mindset aligned with mission‑critical infrastructure environments.
+- [🚀 Quickstart](#-quickstart)
+- [📁 Repository Structure](#-repository-structure)
+- [🛠️ Ansible Automation](#️-ansible-automation)
+- [🧱 Proxmox IaC (Terraform)](#-proxmox-iac-terraform)
+- [📊 Monitoring (Prometheus + Grafana)](#-monitoring-prometheus--grafana)
+- [🔐 Security](#-security)
+- [📚 Documentation](#-documentation)
+- [🎯 Purpose](#-purpose)
+- [📌 Status](#-status)
 
 ---
 
@@ -39,12 +40,11 @@ Follow the steps below to install dependencies, run automation, and launch the m
 
 ## **1. Install Dependencies**
 
-## 🛠️ Ansible Automation
-
-
+### **Ansible**
+```bash
 sudo apt update
 sudo apt install ansible -y
----
+
 Terraform
 bash
 
@@ -53,7 +53,7 @@ wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/sha
 echo "deb [signed-by=/usr/share/keyrings/hashicorp.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
 sudo apt update
 sudo apt install terraform -y
----
+
 Docker (optional, for Prometheus/Grafana)
 bash
 
@@ -61,9 +61,7 @@ sudo apt install docker.io -y
 sudo usermod -aG docker $USER
 
 Log out and back in to apply group changes.
----
 2. Run Ansible Automation
-
 Apply Linux baseline configuration:
 bash
 
@@ -78,7 +76,6 @@ Deploy MySQL database server:
 bash
 
 ansible-playbook ansible/playbooks/database.yml -i ansible/inventories/dev/hosts.ini
----
 
 3. Validate Terraform Configuration
 
@@ -92,17 +89,8 @@ terraform plan
 
     Note: This repo uses example values for Proxmox credentials, IPs, and templates.
     Replace them in your private copy before running terraform apply.
----
 
-## 📊 Monitoring (Prometheus + Grafana)
-```mermaid
-flowchart TD
-  A[Terraform] --> B[Proxmox]
-  B --> C[Linux VMs]
-  C --> D[Prometheus]
-  D --> E[Grafana]
-
-
+4. Start the Monitoring Stack
 Prometheus
 bash
 
@@ -124,74 +112,80 @@ Then open:
 
     Grafana → http://localhost:3000
 
----
-
-Import the dashboard located at:
+Import the dashboard:
 Code
 
 monitoring/grafana/dashboards/linux-systems.json
----
 
-5. Explore the Documentation
-
-The docs/ directory includes:
-
-    Architecture diagram
-
-    Linux maintenance runbook
-
-    Incident response example
-
-    Change management example
-
-These files demonstrate operational maturity and real-world engineering workflows.
 📁 Repository Structure
 Code
 
 .
 ├── ansible/
-│   ├── ansible.cfg
-│   ├── group_vars/
-│   ├── inventories/
-│   ├── playbooks/
-│   └── roles/
-│
 ├── proxmox/
-│   ├── terraform/
-│   └── vm-templates/
-│
 ├── monitoring/
-│   ├── prometheus/
-│   ├── grafana/
-│   └── alerting/
-│
 ├── security/
-│   ├── hardening/
-│   ├── vuln-scan/
-│   └── certificates/
-│
 └── docs/
+
+🧩 Architecture Overview
+mermaid
+
+flowchart TD
+
+    subgraph ProxmoxCluster[Proxmox Cluster]
+        PVE1(Proxmox Node 1)
+        PVE2(Proxmox Node 2)
+    end
+
+    subgraph Terraform[Terraform IaC]
+        TF[Terraform Configs]
+    end
+
+    subgraph Ansible[Ansible Automation]
+        PB1[baseline.yml]
+        PB2[webserver.yml]
+        PB3[database.yml]
+    end
+
+    subgraph Monitoring[Monitoring Stack]
+        PROM[Prometheus]
+        GRAF[Grafana]
+    end
+
+    TF --> PVE1
+    TF --> PVE2
+
+    PVE1 --> VM1[Linux VM 1]
+    PVE2 --> VM2[Linux VM 2]
+
+    Ansible --> VM1
+    Ansible --> VM2
+
+    VM1 --> PROM
+    VM2 --> PROM
+
+    PROM --> GRAF
 
 🛠️ Ansible Automation
 
-This section includes:
+Includes:
 
-    Linux baseline role
+    Linux baseline configuration
 
-    NGINX deployment role
+    NGINX deployment
 
-    MySQL provisioning role
-
-    Environment-specific inventories
+    MySQL provisioning
 
     Group variables
 
+    Inventories for dev/prod
+
     Templates and handlers
 
-These playbooks simulate real configuration management workflows used in production environments.
+These playbooks simulate real configuration management workflows used in production.
 🧱 Proxmox IaC (Terraform)
 
-The proxmox/terraform directory contains:
+The proxmox/terraform directory includes:
 
     VM provisioning using cloud-init templates
 
@@ -199,12 +193,12 @@ The proxmox/terraform directory contains:
 
     Output definitions for VM names and IDs
 
-    A migration notes document for VMware → Proxmox transitions
+    Migration notes for VMware → Proxmox transitions
 
 This demonstrates infrastructure-as-code practices for virtualization platforms.
 📊 Monitoring (Prometheus + Grafana)
 
-The monitoring stack includes:
+Includes:
 
     Prometheus configuration
 
@@ -217,7 +211,7 @@ The monitoring stack includes:
 This reflects real observability workflows for mission-critical systems.
 🔐 Security
 
-The security section includes:
+Includes:
 
     CIS-aligned Linux hardening checklist
 
@@ -232,7 +226,7 @@ This demonstrates awareness of compliance, risk management, and secure operation
 
 The docs/ directory contains:
 
-    Architecture diagram (Mermaid)
+    Architecture diagram
 
     Linux maintenance runbook
 
@@ -243,7 +237,7 @@ The docs/ directory contains:
 These documents show communication clarity and operational discipline.
 🎯 Purpose
 
-This lab environment demonstrates readiness to step into a Systems Infrastructure Engineer role by showing:
+This lab demonstrates readiness for a Systems Infrastructure Engineer role by showcasing:
 
     Technical depth
 
@@ -256,3 +250,7 @@ This lab environment demonstrates readiness to step into a Systems Infrastructur
     Clear communication
 
     Real-world engineering workflows
+
+📌 Status
+
+Actively maintained and expanded.
