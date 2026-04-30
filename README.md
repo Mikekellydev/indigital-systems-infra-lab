@@ -44,68 +44,69 @@ Follow the steps below to install dependencies, run automation, and launch the m
 ```bash
 sudo apt update
 sudo apt install ansible -y
+```
 
 Terraform
-bash
+```bash
 
 sudo apt install wget gpg -y
 wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp.gpg
 echo "deb [signed-by=/usr/share/keyrings/hashicorp.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
 sudo apt update
 sudo apt install terraform -y
-
+```
 Docker (optional, for Prometheus/Grafana)
-bash
+```bash
 
 sudo apt install docker.io -y
 sudo usermod -aG docker $USER
-
+```
 Log out and back in to apply group changes.
 2. Run Ansible Automation
 Apply Linux baseline configuration:
-bash
+```bash
 
 ansible-playbook ansible/playbooks/baseline.yml -i ansible/inventories/dev/hosts.ini
-
+```
 Deploy NGINX web server:
-bash
+```bash
 
 ansible-playbook ansible/playbooks/webserver.yml -i ansible/inventories/dev/hosts.ini
-
+```
 Deploy MySQL database server:
-bash
+```bash
 
 ansible-playbook ansible/playbooks/database.yml -i ansible/inventories/dev/hosts.ini
-
+```
 3. Validate Terraform Configuration
 
 Navigate to the Terraform directory:
-bash
+```bash
 
 cd proxmox/terraform
 terraform init
 terraform validate
 terraform plan
-
+```
     Note: This repo uses example values for Proxmox credentials, IPs, and templates.
     Replace them in your private copy before running terraform apply.
 
 4. Start the Monitoring Stack
 Prometheus
-bash
+```bash
 
 docker run -d \
   -p 9090:9090 \
   -v $(pwd)/monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml \
   prom/prometheus
-
+```
 Grafana
-bash
+```bash
 
 docker run -d \
   -p 3000:3000 \
   grafana/grafana
-
+```
 Then open:
 
     Prometheus → http://localhost:9090
@@ -113,12 +114,10 @@ Then open:
     Grafana → http://localhost:3000
 
 Import the dashboard:
-Code
 
 monitoring/grafana/dashboards/linux-systems.json
 
-📁 Repository Structure
-Code
+📁 Repository StructureCode
 
 .
 ├── ansible/
