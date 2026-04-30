@@ -1,0 +1,74 @@
+# -------------------------
+# Terraform
+# -------------------------
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Sensitive Terraform files
+*.pem
+*.key
+*.p12
+*.crt
+
+# -------------------------
+# Ansible
+# -------------------------
+*.retry
+*.vault
+*.vault-pass
+*.log
+
+# Ansible cache
+__pycache__/
+*.pyc
+
+# -------------------------
+# SSH Keys (never commit)
+# -------------------------
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+*.pub
+
+# -------------------------
+# Certificates
+# -------------------------
+*.crt
+*.csr
+*.pem
+*.key
+
+# -------------------------
+# Logs
+# -------------------------
+*.log
+logs/
+*.out
+
+# -------------------------
+# OS / Editor / Misc
+# -------------------------
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.tmp
+*.bak
+
+# VS Code
+.vscode/
+
+# JetBrains
+.idea/
+
+# -------------------------
+# Docker
+# -------------------------
+docker-data/
