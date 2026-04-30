@@ -9,6 +9,8 @@
   <img src="https://img.shields.io/badge/Security-Hardening-green">
 </p>
 
+---
+
 ## 📘 Table of Contents
 - [Quickstart](#-quickstart)
 - [Repository Structure](#-repository-structure)
@@ -19,6 +21,7 @@
 - [Documentation](#-documentation)
 - [Purpose](#-purpose)
 
+---
 
 This repository demonstrates the daily responsibilities, tooling, and operational workflows of a Systems Infrastructure Engineer.  
 It includes automation, virtualization, monitoring, security hardening, and documentation that mirrors real-world engineering practices.
@@ -41,7 +44,7 @@ Follow the steps below to install dependencies, run automation, and launch the m
 
 sudo apt update
 sudo apt install ansible -y
-
+---
 Terraform
 bash
 
@@ -50,7 +53,7 @@ wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/sha
 echo "deb [signed-by=/usr/share/keyrings/hashicorp.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
 sudo apt update
 sudo apt install terraform -y
-
+---
 Docker (optional, for Prometheus/Grafana)
 bash
 
@@ -58,7 +61,9 @@ sudo apt install docker.io -y
 sudo usermod -aG docker $USER
 
 Log out and back in to apply group changes.
+---
 2. Run Ansible Automation
+
 Apply Linux baseline configuration:
 bash
 
@@ -73,6 +78,7 @@ Deploy MySQL database server:
 bash
 
 ansible-playbook ansible/playbooks/database.yml -i ansible/inventories/dev/hosts.ini
+---
 
 3. Validate Terraform Configuration
 
@@ -86,8 +92,17 @@ terraform plan
 
     Note: This repo uses example values for Proxmox credentials, IPs, and templates.
     Replace them in your private copy before running terraform apply.
+---
 
-4. Start the Monitoring Stack
+## 📊 Monitoring (Prometheus + Grafana)
+```mermaid
+flowchart TD
+  A[Terraform] --> B[Proxmox]
+  B --> C[Linux VMs]
+  C --> D[Prometheus]
+  D --> E[Grafana]
+
+
 Prometheus
 bash
 
@@ -109,10 +124,13 @@ Then open:
 
     Grafana → http://localhost:3000
 
+---
+
 Import the dashboard located at:
 Code
 
 monitoring/grafana/dashboards/linux-systems.json
+---
 
 5. Explore the Documentation
 
