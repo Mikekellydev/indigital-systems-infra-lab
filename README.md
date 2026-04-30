@@ -1,4 +1,24 @@
-# INDIGITAL Systems Infrastructure Engineer Lab
+# 🛰️ INDIGITAL Systems Infrastructure Engineer Lab
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Ansible-Automation-blue">
+  <img src="https://img.shields.io/badge/Terraform-IaC-5C4EE5">
+  <img src="https://img.shields.io/badge/Proxmox-Virtualization-orange">
+  <img src="https://img.shields.io/badge/Prometheus-Monitoring-E6522C">
+  <img src="https://img.shields.io/badge/Grafana-Dashboards-F46800">
+  <img src="https://img.shields.io/badge/Security-Hardening-green">
+</p>
+
+## 📘 Table of Contents
+- [Quickstart](#-quickstart)
+- [Repository Structure](#-repository-structure)
+- [Ansible Automation](#-ansible-automation)
+- [Proxmox IaC](#-proxmox-iac)
+- [Monitoring](#-monitoring)
+- [Security](#-security)
+- [Documentation](#-documentation)
+- [Purpose](#-purpose)
+
 
 This repository demonstrates the daily responsibilities, tooling, and operational workflows of a Systems Infrastructure Engineer.  
 It includes automation, virtualization, monitoring, security hardening, and documentation that mirrors real-world engineering practices.
@@ -16,8 +36,9 @@ Follow the steps below to install dependencies, run automation, and launch the m
 
 ## **1. Install Dependencies**
 
-### **Ansible**
-```bash
+## 🛠️ Ansible Automation
+
+
 sudo apt update
 sudo apt install ansible -y
 
