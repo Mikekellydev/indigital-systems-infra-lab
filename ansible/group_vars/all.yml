@@ -1,0 +1,9 @@
+ansible_user: ubuntu
+timezone: "America/New_York"
+packages_common:
+  - curl
+  - wget
+  - vim
+  - htop
+  - net-tools
+  - unzip

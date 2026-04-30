@@ -1,0 +1,13 @@
+motd_message: |
+  Authorized access only.
+  All actions are monitored and logged.
+
+nginx_port: 80
+
+mysql_root_password: "ChangeMe123!"
+mysql_databases:
+  - name: appdb
+mysql_users:
+  - name: appuser
+    password: "AppUserPass123!"
+    priv: "appdb.*:ALL"

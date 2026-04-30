@@ -1,0 +1,39 @@
+---
+- name: Ensure common packages are installed
+  apt:
+    name: "{{ packages_common }}"
+    state: present
+    update_cache: yes
+
+- name: Set timezone
+  timezone:
+    name: "{{ timezone }}"
+
+- name: Deploy MOTD
+  template:
+    src: motd.j2
+    dest: /etc/motd
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Ensure UFW is installed
+  apt:
+    name: ufw
+    state: present
+
+- name: Enable UFW
+  ufw:
+    state: enabled
+    policy: deny
+
+- name: Allow SSH
+  ufw:
+    rule: allow
+    port: 22
+    proto: tcp
+
+- name: Ensure system is updated
+  apt:
+    upgrade: dist
+    update_cache: yes

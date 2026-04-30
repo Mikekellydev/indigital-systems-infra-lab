@@ -1,0 +1,6 @@
+---
+- name: Deploy MySQL database server
+  hosts: linux_servers
+  become: yes
+  roles:
+    - mysql

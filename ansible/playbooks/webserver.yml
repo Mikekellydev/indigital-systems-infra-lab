@@ -1,0 +1,6 @@
+---
+- name: Deploy NGINX web server
+  hosts: linux_servers
+  become: yes
+  roles:
+    - nginx

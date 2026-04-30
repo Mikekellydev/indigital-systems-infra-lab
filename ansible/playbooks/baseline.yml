@@ -1,0 +1,6 @@
+---
+- name: Apply Linux baseline configuration
+  hosts: linux_servers
+  become: yes
+  roles:
+    - linux_baseline
