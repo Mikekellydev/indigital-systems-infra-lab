@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>SparkwaveIT Systems Infrastructure Engineer Lab</title>
+<title>SparkwaveIT | AlmaLinux 9 Systems Engineering Lab</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -119,6 +119,7 @@ nav a {
   padding: 6px 4px;
   border-left: 3px solid transparent;
   transition: 0.2s;
+  cursor: pointer;
 }
 nav a:hover {
   border-left: 3px solid var(--accent);
@@ -162,6 +163,12 @@ h2 {
   margin-top: 0;
   border-bottom: 1px solid var(--border);
   padding-bottom: 8px;
+  color: var(--accent);
+}
+h3 {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  color: var(--accent);
 }
 
 /* =========================================
@@ -207,6 +214,9 @@ pre {
   overflow-x: auto;
   font-size: 0.9rem;
 }
+code {
+  font-family: 'Fira Code', 'Courier New', monospace;
+}
 
 /* =========================================
    BACK TO TOP BUTTON
@@ -225,20 +235,10 @@ pre {
   display: none;
   box-shadow: 0 4px 12px var(--shadow);
   transition: 0.3s;
+  z-index: 1002;
 }
 #topBtn:hover {
   transform: scale(1.1);
-}
-
-/* =========================================
-   LIVE DEMO SECTION
-========================================= */
-.demo-img {
-  width: 100%;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  margin-top: 10px;
-  box-shadow: 0 4px 12px var(--shadow);
 }
 
 /* =========================================
@@ -275,10 +275,9 @@ footer a:hover {
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 
 <script>
-mermaid.initialize({ startOnLoad: true, theme: "dark" });
-
 function scrollToSection(id) {
-  document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: "smooth" });
 }
 
 function toggleSidebar() {
@@ -293,14 +292,12 @@ function toggleTheme() {
   const next = current === "dark" ? "light" : "dark";
   document.documentElement.setAttribute("data-theme", next);
   localStorage.setItem("theme", next);
-  mermaid.initialize({ startOnLoad: true, theme: next === "dark" ? "dark" : "default" });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   const saved = localStorage.getItem("theme");
   if (saved) {
     document.documentElement.setAttribute("data-theme", saved);
-    mermaid.initialize({ startOnLoad: true, theme: saved === "dark" ? "dark" : "default" });
   }
 
   const sections = document.querySelectorAll("section");
@@ -319,9 +316,6 @@ document.addEventListener("DOMContentLoaded", () => {
   animateMetrics();
 });
 
-/* =========================================
-   METRIC CARD ANIMATION
-========================================= */
 function animateMetrics() {
   const cpu = document.getElementById("cpuMetric");
   const ram = document.getElementById("ramMetric");
@@ -331,9 +325,9 @@ function animateMetrics() {
   let ramVal = 0;
   let uptimeVal = 0;
 
-  const cpuTarget = 23;
-  const ramTarget = 3.1;
-  const uptimeTarget = 12;
+  const cpuTarget = 14;
+  const ramTarget = 2.4;
+  const uptimeTarget = 45;
 
   const interval = setInterval(() => {
     if (cpuVal < cpuTarget) cpuVal++;
@@ -347,7 +341,7 @@ function animateMetrics() {
     if (cpuVal >= cpuTarget && ramVal >= ramTarget && uptimeVal >= uptimeTarget) {
       clearInterval(interval);
     }
-  }, 60);
+  }, 40);
 }
 </script>
 </head>
@@ -357,164 +351,138 @@ function animateMetrics() {
 <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
 
 <aside>
-  <h1>🛰️ SparkwaveIT Lab</h1>
-  <p>Systems Infrastructure Engineering Portfolio</p>
+  <h1>🛰️ SparkwaveIT</h1>
+  <p>Systems Infrastructure Portfolio<br>Senior Specialist (L4) Lab</p>
 
   <nav>
     <a onclick="scrollToSection('quickstart')">🚀 Quickstart</a>
     <a onclick="scrollToSection('architecture')">🧩 Architecture</a>
-    <a onclick="scrollToSection('ansible')">🛠️ Ansible</a>
-    <a onclick="scrollToSection('terraform')">🧱 Terraform</a>
+    <a onclick="scrollToSection('ansible')">🛠️ Automation</a>
+    <a onclick="scrollToSection('compliance')">🔐 STIG Compliance</a>
     <a onclick="scrollToSection('monitoring')">📊 Monitoring</a>
-    <a onclick="scrollToSection('security')">🔐 Security</a>
-    <a onclick="scrollToSection('docs')">📚 Documentation</a>
-    <a onclick="scrollToSection('demo')">🖥️ Live Demo</a>
-    <a onclick="scrollToSection('why')">🎯 Why This Matters</a>
+    <a onclick="scrollToSection('why')">🎯 Mission Profile</a>
     <a onclick="scrollToSection('contact')">📬 Contact</a>
   </nav>
 
   <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
 </aside>
 
-<main>
+<main id="top">
 
 <div class="hero">
-  <h1>SparkwaveIT Systems Infrastructure Engineer Lab</h1>
-  <p>Automation • IaC • Monitoring • Security • Documentation</p>
+  <h1>AlmaLinux 9 Infrastructure Engineering</h1>
+  <p>Enterprise Hardening • Splunk Ingestion • Ansible Automation • Podman</p>
 </div>
 
-<!-- =========================================
-     METRIC CARDS
-========================================= -->
 <div class="metrics">
   <div class="metric-card">
     <div id="cpuMetric" class="metric-value">0%</div>
-    <div class="metric-label">CPU Load</div>
+    <div class="metric-label">Lab CPU Load</div>
   </div>
   <div class="metric-card">
     <div id="ramMetric" class="metric-value">0 GB</div>
-    <div class="metric-label">Memory Usage</div>
+    <div class="metric-label">Memory Utilization</div>
   </div>
   <div class="metric-card">
     <div id="uptimeMetric" class="metric-value">0 days</div>
-    <div class="metric-label">System Uptime</div>
+    <div class="metric-label">System Continuity</div>
   </div>
 </div>
 
 <section id="quickstart">
-  <h2>🚀 Quickstart</h2>
-  <p>Run this lab on Ubuntu, WSL2, or any Linux environment.</p>
+  <h2>🚀 Quickstart (EL9 Environment)</h2>
+  <p>Validated on AlmaLinux 9.4 (Seafoam Green) - RHEL 9 Binary Compatible.</p>
 
-  <h3>Install Ansible</h3>
-  <pre><code>sudo apt update
-sudo apt install ansible -y</code></pre>
+  <h3>1. Core Toolchain Installation</h3>
+  <pre><code># Enable EPEL and install Ansible
+sudo dnf install epel-release -y
+sudo dnf install ansible git -y
 
-  <h3>Install Terraform</h3>
-  <pre><code>sudo apt install wget gpg -y
-wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp.gpg
-echo "deb [signed-by=/usr/share/keyrings/hashicorp.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
-sudo apt update
-sudo apt install terraform -y</code></pre>
+# Install Terraform (HashiCorp RHEL Repo)
+sudo dnf install -y yum-utils
+sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+sudo dnf install terraform -y</code></pre>
+
+  <h3>2. Podman Setup (Rootless Containers)</h3>
+  <pre><code># Install native container tools
+sudo dnf install -y container-tools
+podman --version</code></pre>
 </section>
 
 <section id="architecture">
-  <h2>🧩 Architecture Overview</h2>
-  <div class="mermaid">
-flowchart TD
-  TF[Terraform IaC] --> PVE1(Proxmox Node 1)
-  TF --> PVE2(Proxmox Node 2)
-  PVE1 --> VM1[Linux VM 1]
-  PVE2 --> VM2[Linux VM 2]
-  Ansible[Ansible Automation] --> VM1
-  Ansible --> VM2
-  VM1 --> PROM[Prometheus]
-  VM2 --> PROM
-  PROM --> GRAF[Grafana]
+  <h2>🧩 Infrastructure Architecture</h2>
+  <p>A distributed model mirroring defense-grade mission systems.</p>
+  <div class="mermaid" style="background: white; padding: 10px; border-radius: 8px;">
+graph LR
+    A[AlmaLinux SME Node] --> B(Universal Forwarder)
+    B --> C{Splunk Indexer}
+    C --> D[Compliance Dashboard]
+    E[Ansible Controller] -.-> A
+    F[Terraform] --> G[Proxmox/Cloud]
+    G --> A
   </div>
 </section>
 
 <section id="ansible">
-  <h2>🛠️ Ansible Automation</h2>
+  <h2>🛠️ Automation & Provisioning</h2>
   <ul>
-    <li>Linux baseline configuration</li>
-    <li>NGINX deployment</li>
-    <li>MySQL provisioning</li>
-    <li>Environment-specific inventories</li>
-    <li>Group variables and templates</li>
+    <li><strong>Baseline Hardening:</strong> Automated removal of legacy protocols (Telnet, FTP).</li>
+    <li><strong>Idempotent Config:</strong> Ensuring /etc/ssh/sshd_config matches STIG requirements.</li>
+    <li><strong>Deployment:</strong> Automated Podman container rollouts for local dev environments.</li>
   </ul>
+  <pre><code># Running a hardening playbook
+ansible-playbook -i inventory/lab_hosts site_hardening.yml --ask-become-pass</code></pre>
 </section>
 
-<section id="terraform">
-  <h2>🧱 Proxmox IaC (Terraform)</h2>
-  <pre><code>cd proxmox/terraform
-terraform init
-terraform validate
-terraform plan</code></pre>
+<section id="compliance">
+  <h2>🔐 STIG Compliance & Security</h2>
+  <p>Leveraging "3MC" methodology for system audit readiness.</p>
+  
+  <h3>World-Writable File Audit</h3>
+  <pre><code># Senior Specialist Spot-Check
+sudo find /etc /bin /sbin -xdev -type f -perm -0002 -ls</code></pre>
+
+  <h3>User Shell Hardening</h3>
+  <p>Automated verification that system accounts (sync, halt, shutdown) are mapped to <code>/sbin/nologin</code>.</p>
 </section>
 
 <section id="monitoring">
-  <h2>📊 Monitoring (Prometheus + Grafana)</h2>
-  <h3>Start Prometheus</h3>
-  <pre><code>docker run -d -p 9090:9090 \
-  -v $(pwd)/monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml \
+  <h2>📊 Monitoring & Data Ingestion</h2>
+  <p>Connecting technical SME work to management-level visibility.</p>
+
+  <h3>Log Ingestion Pipeline</h3>
+  <pre><code># Tailing custom security logs for Splunk
+podman run -d --name splunk-uf \
+  -v /var/log/audit_findings.log:/var/log/audit_findings.log:Z \
+  splunk/universalforwarder:latest</code></pre>
+
+  <h3>Prometheus/Grafana</h3>
+  <pre><code># Deploying Prometheus with SELinux Context
+podman run -d -p 9090:9090 \
+  -v $(pwd)/prometheus.yml:/etc/prometheus/prometheus.yml:Z \
   prom/prometheus</code></pre>
-
-  <h3>Start Grafana</h3>
-  <pre><code>docker run -d -p 3000:3000 grafana/grafana</code></pre>
 </section>
 
-<section id="security">
-  <h2>🔐 Security</h2>
-  <ul>
-    <li>CIS Linux hardening</li>
-    <li>OpenVAS vulnerability scanning</li>
-    <li>Certificate automation</li>
-  </ul>
-</section>
-
-<section id="docs">
-  <h2>📚 Documentation</h2>
-  <ul>
-    <li>Architecture diagram</li>
-    <li>Linux maintenance runbook</li>
-    <li>Incident response example</li>
-    <li>Change management example</li>
-  </ul>
-</section>
-
-<!-- =========================================
-     WHY THIS MATTERS
-========================================= -->
 <section id="why">
-  <h2>🎯 Why This Matters</h2>
-  <p>This lab demonstrates real Systems Infrastructure Engineering capabilities that directly map to many company's mission‑critical environment:</p>
-
+  <h2>🎯 Mission Profile</h2>
+  <p>This lab reflects the <strong>"Standardization = Reliability"</strong> philosophy required in high-stakes defense environments:</p>
   <ul>
-    <li><strong>Automation-first mindset</strong> using Ansible for consistent, repeatable configuration</li>
-    <li><strong>Infrastructure as Code</strong> with Terraform for deterministic VM provisioning</li>
-    <li><strong>Observability</strong> through Prometheus and Grafana dashboards</li>
-    <li><strong>Security hardening</strong> aligned with CIS benchmarks</li>
-    <li><strong>Operational readiness</strong> with runbooks, documentation, and monitoring</li>
+    <li><strong>3M Accountability:</strong> Treating IT infrastructure with the same rigor as shipboard maintenance systems.</li>
+    <li><strong>Risk Mitigation:</strong> Proactive identification of privilege escalation vectors.</li>
+    <li><strong>Observability:</strong> Ensuring every manual fix is backed by a visible dashboard metric.</li>
   </ul>
-
-  <p>This is the same engineering approach used in NG911, telecom, and public safety infrastructure — where uptime, reliability, and automation are non‑negotiable.</p>
 </section>
 
-<!-- =========================================
-     CONTACT
-========================================= -->
 <section id="contact">
   <h2>📬 Contact</h2>
-  <p>If you'd like to discuss this project, infrastructure engineering, or potential opportunities, feel free to reach out.</p>
-
-  <p><strong>Email:</strong> <a href="mailto:mikekellydev@gmail.com">mikekellydev@gmail.com</a></p>
-
-  <p><strong>GitHub:</strong> <a href="https://github.com/Mikekellydev" target="_blank">github.com/Mikekellydev</a></p>
+  <p><strong>Michael Kelly</strong><br>Systems Infrastructure Engineer</p>
+  <p>Email: <a href="mailto:mikekellydev@gmail.com">mikekellydev@gmail.com</a></p>
+  <p>GitHub: <a href="https://github.com/Mikekellydev" target="_blank">github.com/Mikekellydev</a></p>
 </section>
 
 <footer>
-  <p>Built by Michael Kelly — Systems Infrastructure Engineer</p>
-  <p><a href="#top">Back to top</a></p>
+  <p>Hardened on AlmaLinux 9 | Built for Mission Readiness</p>
+  <p><a onclick="scrollToSection('top')">Back to top</a></p>
 </footer>
 
 <button id="topBtn" onclick="scrollToSection('top')">↑</button>
